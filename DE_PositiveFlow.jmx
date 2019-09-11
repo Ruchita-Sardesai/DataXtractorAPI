@@ -572,7 +572,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
           &quot;name&quot;:&quot;DB3_Connection${__time()}&quot;,&#xd;
-          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB3${__time()}&quot;,&quot;name&quot;:&quot;Two${__time()}&quot;,&#xd;
+          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB3${__time()}&quot;,&#xd;
           &quot;host&quot;: &quot;${host}&quot;,&#xd;
           &quot;port&quot;:&quot;${port}&quot;,&#xd;
           &quot;dataSourceName&quot;:&quot;${DB3SourceName}&quot;,&#xd;
