@@ -951,7 +951,7 @@
           <stringProp name="HTTPSampler.port">UFT-8</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${connection}/${__property(Connection_ID)}</stringProp>
+          <stringProp name="HTTPSampler.path">${connection}/${Connection_ID}</stringProp>
           <stringProp name="HTTPSampler.method">DELETE</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1541,7 +1541,25 @@
           <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract LightagentRX Timestemp" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">LightAgentRxTimeStamp</stringProp>
-            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (\w+)</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database TX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseTxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseTxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database Rx Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseRxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseRxTimeStamp&quot;: (\w+)</stringProp>
             <stringProp name="RegexExtractor.template">$1$</stringProp>
             <stringProp name="RegexExtractor.default"></stringProp>
             <stringProp name="RegexExtractor.match_number">0</stringProp>
@@ -1575,19 +1593,23 @@ try
 {
 	long Convert1= Long.parseLong(vars.get(&quot;LightAgentTxTimeStamp&quot;));
 	long Convert2= Long.parseLong(vars.get(&quot;LightAgentRxTimeStamp&quot;));
-     long Convert3= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
-     long Convert4= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
+	long Convert3= Long.parseLong(vars.get(&quot;DatabaseTxTimeStamp&quot;));
+	long Convert4= Long.parseLong(vars.get(&quot;DatabaseRxTimeStamp&quot;));
+     long Convert5= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
+     long Convert6= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
      
-     long Total1= Convert1+Convert2+Convert3+Convert4;
+     long Total1= Convert1+Convert2+Convert3+Convert4+Convert5+Convert6;
      String path = FileServer.getFileServer().getBaseDir();
      f = new FileOutputStream(path+vars.get(&quot;ResultFilePath&quot;), true); 
      p = new PrintStream(f); 
      this.interpreter.setOut(p); 
-     print(&quot;P: Verify user is able to RUN Query by ConnectionID2(DB2)&quot;);
+     print(&quot;P: Verify user is able to RUN Query by ConnectionID1(DB1)&quot;);
      print(&quot;LightAgentTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
      print(&quot;LightAgentRxTimeStamp:&quot;+Convert2+&quot;ms&quot;);
-     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert3+&quot;ms&quot;);
-     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DatabaseTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
+     print(&quot;DatabaseRxTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert5+&quot;ms&quot;);
+     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert6+&quot;ms&quot;);
 
      print(&quot;Total:&quot;+Total1+&quot;ms&quot;);
      print(&quot;\n&quot;);
@@ -1687,7 +1709,25 @@ catch (Throwable ex)
           <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract LightagentRX Timestemp" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">LightAgentRxTimeStamp</stringProp>
-            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (\w+)</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database TX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseTxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseTxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database Rx Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseRxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseRxTimeStamp&quot;: (\w+)</stringProp>
             <stringProp name="RegexExtractor.template">$1$</stringProp>
             <stringProp name="RegexExtractor.default"></stringProp>
             <stringProp name="RegexExtractor.match_number">0</stringProp>
@@ -1721,10 +1761,12 @@ try
 {
 	long Convert1= Long.parseLong(vars.get(&quot;LightAgentTxTimeStamp&quot;));
 	long Convert2= Long.parseLong(vars.get(&quot;LightAgentRxTimeStamp&quot;));
-     long Convert3= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
-     long Convert4= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
+	long Convert3= Long.parseLong(vars.get(&quot;DatabaseTxTimeStamp&quot;));
+	long Convert4= Long.parseLong(vars.get(&quot;DatabaseRxTimeStamp&quot;));
+     long Convert5= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
+     long Convert6= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
      
-     long Total1= Convert1+Convert2+Convert3+Convert4;
+     long Total1= Convert1+Convert2+Convert3+Convert4+Convert5+Convert6;
      String path = FileServer.getFileServer().getBaseDir();
      f = new FileOutputStream(path+vars.get(&quot;ResultFilePath&quot;), true); 
      p = new PrintStream(f); 
@@ -1732,8 +1774,10 @@ try
      print(&quot;P: Verify user is able to RUN Query by ConnectionID2(DB2)&quot;);
      print(&quot;LightAgentTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
      print(&quot;LightAgentRxTimeStamp:&quot;+Convert2+&quot;ms&quot;);
-     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert3+&quot;ms&quot;);
-     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DatabaseTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
+     print(&quot;DatabaseRxTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert5+&quot;ms&quot;);
+     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert6+&quot;ms&quot;);
 
      print(&quot;Total:&quot;+Total1+&quot;ms&quot;);
      print(&quot;\n&quot;);
@@ -1833,7 +1877,25 @@ catch (Throwable ex)
           <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract LightagentRX Timestemp" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">LightAgentRxTimeStamp</stringProp>
-            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (\w+)</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database TX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseTxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseTxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database Rx Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseRxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseRxTimeStamp&quot;: (\w+)</stringProp>
             <stringProp name="RegexExtractor.template">$1$</stringProp>
             <stringProp name="RegexExtractor.default"></stringProp>
             <stringProp name="RegexExtractor.match_number">0</stringProp>
@@ -1867,19 +1929,23 @@ try
 {
 	long Convert1= Long.parseLong(vars.get(&quot;LightAgentTxTimeStamp&quot;));
 	long Convert2= Long.parseLong(vars.get(&quot;LightAgentRxTimeStamp&quot;));
-     long Convert3= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
-     long Convert4= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
+	long Convert3= Long.parseLong(vars.get(&quot;DatabaseTxTimeStamp&quot;));
+	long Convert4= Long.parseLong(vars.get(&quot;DatabaseRxTimeStamp&quot;));
+     long Convert5= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
+     long Convert6= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
      
-     long Total1= Convert1+Convert2+Convert3+Convert4;
+     long Total1= Convert1+Convert2+Convert3+Convert4+Convert5+Convert6;
      String path = FileServer.getFileServer().getBaseDir();
      f = new FileOutputStream(path+vars.get(&quot;ResultFilePath&quot;), true); 
      p = new PrintStream(f); 
      this.interpreter.setOut(p); 
-     print(&quot;P: Verify user is able to RUN Query by ConnectionID2(DB2)&quot;);
+     print(&quot;P: Verify user is able to RUN Query by ConnectionID3(DB3)&quot;);
      print(&quot;LightAgentTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
      print(&quot;LightAgentRxTimeStamp:&quot;+Convert2+&quot;ms&quot;);
-     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert3+&quot;ms&quot;);
-     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DatabaseTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
+     print(&quot;DatabaseRxTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert5+&quot;ms&quot;);
+     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert6+&quot;ms&quot;);
 
      print(&quot;Total:&quot;+Total1+&quot;ms&quot;);
      print(&quot;\n&quot;);
