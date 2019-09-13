@@ -97,12 +97,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="connection" elementType="Argument">
             <stringProp name="Argument.name">connection</stringProp>
-            <stringProp name="Argument.value">/api/v1/connections</stringProp>
+            <stringProp name="Argument.value">/api/dataextractor/v1/connections</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="queries" elementType="Argument">
             <stringProp name="Argument.name">queries</stringProp>
-            <stringProp name="Argument.value">/api/v1/queries</stringProp>
+            <stringProp name="Argument.value">/api/dataextractor/v1/queries</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="host" elementType="Argument">
