@@ -18497,6 +18497,7 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;6QRY${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;P: Verify RUN Query (Inner Join)&quot;,&#xd;
   &quot;queryString&quot;:    &quot;select b.BatchID, b.BatchStatusID, p.PaymentNumber, p.VendorID, p.CheckNumber, p.InvoiceNumber, p.InvoiceDate, p.NetAmount, p.TRXStatus, p.PaymentType, p.PONumber from Batches b, PaymentTransactions p where b.BatchID = p.BatchID&quot;,&#xd;
+  &#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -21111,6 +21112,220 @@ try
      p = new PrintStream(f); 
      this.interpreter.setOut(p); 
     print(&quot;P: Verify user is able to RUN Query (Case 2)&quot;);
+     print(&quot;LightAgentTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
+     print(&quot;LightAgentRxTimeStamp:&quot;+Convert2+&quot;ms&quot;);
+     print(&quot;DatabaseTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
+     print(&quot;DatabaseRxTimeStamp:&quot;+Convert4+&quot;ms&quot;);
+     print(&quot;DataExtractorSendRequestTimeStamp:&quot;+Convert5+&quot;ms&quot;);
+     print(&quot;DataExtractorRecieveResponseTimeStamp:&quot;+Convert6+&quot;ms&quot;);
+
+     print(&quot;Total:&quot;+Total1+&quot;ms&quot;);
+     print(&quot;\n&quot;);
+     f.close();
+}
+catch (Throwable ex) 
+{
+   log.error(&quot;Failed in Beanshell&quot;, ex);
+   throw ex;
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1146597565">${Response200}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1514160316">&quot;${__property(requestStatus)}&quot;: 1</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1755402233">&quot;${__property(LATimeStamp)}&quot;</stringProp>
+              <stringProp name="1995663760">&quot;${__property(DBTimeStamp)}&quot;</stringProp>
+              <stringProp name="1115454739">&quot;${__property(DETimeStamp)}&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query with parameters" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;name&quot;: &quot;1QRY${__time()}&quot;,&#xd;
+  &quot;description&quot;: &quot;P: Verify RUN Query (Normal select Query)&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Batches where BatchID = &apos;1000000001&apos;;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from PaymentTransactions where InvoiceNumber like &apos;%IN%&apos; and VendorName=&apos;Arrow&apos;;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Batches where BatchID in (&apos;1000000001&apos;,&apos;1000000002&apos;,&apos;1000000003&apos;) and Batchname=&apos;356867&apos;;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Batches where BatchID =&apos;1000000001&apos; and BatchName=&apos;India pvt ltd&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where VendorID=&apos;AERPHO&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where Invoice number=&apos;121-987&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where erpbatchid=&apos;DC_Mutiple ADD,ChkBID,PMNTS_1&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where Invoicedescription=&apos;Fall flood&apos;and VendorID=&apos;BLUKEY&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where Payment number IN(&apos;Deluxe1&apos;,&apos;Deluxe2&apos;)&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where Checkdate=&apos;2019-03-07&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from vendorDetails where vendorbankname=&apos;Icici&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from vendorbankdetails where vendorname IN(&apos;Asd&apos;,&apos;Pjh&apos;)&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from vendors where vendorId=&apos;123&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from vendors where address=&apos;3698521&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Batches where Batchaddress=&apos;Arakere&apos; and BatchID in (&apos;1000000001&apos;,&apos;1000000002&apos;,&apos;1000000003&apos;) order by DateTimeCreated desc&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select count(*) from PaymentTransactions where Inoicedate=&apos;27/01/18&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select b.BatchID, b.BatchStatusID, p.PaymentNumber, p.VendorID, p.CheckNumber, p.InvoiceNumber, p.InvoiceDate, p.NetAmount, p.TRXStatus, p.PaymentType, p.PONumber from Batches b, PaymentTransactions p where paymentnumber=&apos;deluxe1&apos; and  b.BatchID = p.BatchID&quot;,&#xd;
+  &quot;queryString&quot;: &quot;SELECT VendorID, PaymentType, CASE  WHEN PaymentType = &apos;JPMACH&apos; THEN &apos;The vendor is JPM &apos; WHEN PaymentType = &apos;JPMSUA&apos; THEN&apos;The vendor is JPMSUA&apos;    ELSE &apos;The quantity is under 30&apos;END AS KindPayment FROM Vendors&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select * from Payments where NetAmount between 100 and 3000 and PaymentNumber=&apos;Deluxe 3&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;SELECT COUNT(BatchID) as NoofBatches, BatchStatusID FROM Batches where Batchname=&apos;jhgtr&apos; GROUP BY BatchStatusID&quot;,&#xd;
+  &quot;queryString&quot;: &quot;SELECT COUNT(BatchID) as Noofbatches, PaymentType FROM PaymentTransactions where payment number=&apos;deluxe1&apos; GROUP BY PaymentType HAVING COUNT(BatchID) &gt; 6 order by COUNT(BatchID)&quot;,&#xd;
+  &quot;queryString&quot;: &quot;SELECT p.* FROM PaymentTransactions p WHERE EXISTS (SELECT BatchID FROM Batches b WHERE p.BatchID = b.BatchID AND b.BatchStatusID =11) and batchNumber=&apos;64565767&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;SELECT MAX (p2.NetAmount) FROM  PaymentTransactions p2 GROUP BY  p2.BatchID where PaymentNumber=&apos;Deluxe4&apos;&quot;,&#xd;
+  &quot;queryString&quot;: &quot;select b.BatchID, b.BatchStatusID, p.PaymentNumber, p.VendorID, p.CheckNumber, p.InvoiceNumber, p.InvoiceDate, p.NetAmount, p.TRXStatus, p.PaymentType, p.PONumber from Batches b left join PaymentTransactions p on b.BatchID = p.BatchID and BatchiD=&apos;4557&apos;&quot;,&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">UFT-8</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${connection}/${__property(GConnection_ID1)}/${queriesPath}/${runPath}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Referer" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">http://dataextractorapi-test.us-west-2.elasticbeanstalk.com/swagger/index.html</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json; charset=UTF-8</stringProp>
+              </elementProp>
+              <elementProp name="Cache-Control" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Message" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1659701417">&quot;result&quot;:</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract LightagentTX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">LightAgentTxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;LightAgentTxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract LightagentRX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">LightAgentRxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;LightAgentRxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database TX Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseTxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseTxTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract Database Rx Timestemp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DatabaseRxTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DatabaseRxTimeStamp&quot;: (\w+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract DataExtractor Send Request TimeStamp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DataExtractorSendRequestTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DataExtractorSendRequestTimeStamp&quot;: (.+?)&quot;*(?=,)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract DataExtractor Recieve Response TimeStamp" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">DataExtractorRecieveResponseTimeStamp</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;DataExtractorRecieveResponseTimeStamp&quot;: (\w+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import org.apache.jmeter.services.FileServer;
+
+try
+{
+	long Convert1= Long.parseLong(vars.get(&quot;LightAgentTxTimeStamp&quot;));
+	long Convert2= Long.parseLong(vars.get(&quot;LightAgentRxTimeStamp&quot;));
+	long Convert3= Long.parseLong(vars.get(&quot;DatabaseTxTimeStamp&quot;));
+	long Convert4= Long.parseLong(vars.get(&quot;DatabaseRxTimeStamp&quot;));
+     long Convert5= Long.parseLong(vars.get(&quot;DataExtractorSendRequestTimeStamp&quot;));
+     long Convert6= Long.parseLong(vars.get(&quot;DataExtractorRecieveResponseTimeStamp&quot;));
+     
+     long Total1= Convert1+Convert2+Convert3+Convert4+Convert5+Convert6;
+     String path = FileServer.getFileServer().getBaseDir();
+     f = new FileOutputStream(path+vars.get(&quot;ResultFilePath&quot;), true); 
+     p = new PrintStream(f); 
+     this.interpreter.setOut(p); 
+     print(&quot;P: Verify RUN Query (Normal select Query)&quot;);
      print(&quot;LightAgentTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
      print(&quot;LightAgentRxTimeStamp:&quot;+Convert2+&quot;ms&quot;);
      print(&quot;DatabaseTxTimeStamp:&quot;+Convert1+&quot;ms&quot;);
