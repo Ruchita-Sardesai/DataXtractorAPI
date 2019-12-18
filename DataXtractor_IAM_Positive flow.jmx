@@ -595,7 +595,7 @@
           <stringProp name="script"></stringProp>
         </BeanShellPreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD connection 1 for DB1" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD connection  for DB1" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1035,7 +1035,7 @@
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by ConnectionID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by ConnectionID(DB1)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1218,7 +1218,7 @@ catch (Throwable ex)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query with parameters by ConnectionID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query with parameters by ConnectionID(DB1)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1409,7 +1409,7 @@ catch (Throwable ex)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD Query id for connection1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD Query id for connection(DB1)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1744,7 +1744,7 @@ catch (Throwable ex)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query Details By QueryID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query Details By QueryID(DB1)" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -2247,15 +2247,15 @@ catch (Throwable ex)
           <stringProp name="script"></stringProp>
         </BeanShellPreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD connection 1 for DB1" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD connection  for DB2" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-          &quot;name&quot;:&quot;DB1_Connection${__time()}&quot;,&#xd;
-          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB1${__time()}&quot;,&#xd;
+          &quot;name&quot;:&quot;DB2_Connection${__time()}&quot;,&#xd;
+          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB2${__time()}&quot;,&#xd;
           &quot;host&quot;: &quot;${host}&quot;,&#xd;
           &quot;port&quot;:&quot;${port}&quot;,&#xd;
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
@@ -2438,8 +2438,8 @@ catch (Throwable ex)
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	     &quot;name&quot;:&quot;Tup_DB1_Connection${__time()}&quot;,&#xd;
-          &quot;description&quot;: &quot;Update_ODBC connection detail for DB1${__time()}&quot;,&#xd;
+	     &quot;name&quot;:&quot;Tup_DB2_Connection${__time()}&quot;,&#xd;
+          &quot;description&quot;: &quot;Update_ODBC connection detail for DB2${__time()}&quot;,&#xd;
           &quot;host&quot;: &quot;${host}&quot;,&#xd;
           &quot;port&quot;:&quot;${port}&quot;,&#xd;
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
@@ -2524,7 +2524,7 @@ catch (Throwable ex)
           <stringProp name="script"></stringProp>
         </BeanShellPreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P:Verify user is able to test the saved connection with valid ConnectionID for DB1" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P:Verify user is able to test the saved connection with valid ConnectionID for DB2" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -2687,15 +2687,15 @@ catch (Throwable ex)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by ConnectionID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by ConnectionID(DB2)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;name&quot;: &quot;Query_DB1${__time()}&quot;,&#xd;
-  &quot;description&quot;: &quot;New query for DB1${__time()}&quot;,&#xd;
+  &quot;name&quot;: &quot;Query_DB2${__time()}&quot;,&#xd;
+  &quot;description&quot;: &quot;New query for DB2${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
  }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -2870,15 +2870,15 @@ catch (Throwable ex)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query with parameters by ConnectionID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query with parameters by ConnectionID(DB2)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;name&quot;: &quot;Query_DB1${__time()}&quot;,&#xd;
-  &quot;description&quot;: &quot;New query for DB1${__time()}&quot;,&#xd;
+  &quot;name&quot;: &quot;Query_DB2${__time()}&quot;,&#xd;
+  &quot;description&quot;: &quot;New query for DB2${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions where InvoiceNumber like &apos;%IN%&apos; and VendorName=&apos;Arrow&apos;&quot;,&#xd;
  }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -3061,15 +3061,15 @@ catch (Throwable ex)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD Query id for connection1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to ADD Query id for connection(DB2)" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;name&quot;: &quot;Query_DB1${__time()}&quot;,&#xd;
-  &quot;description&quot;: &quot;New query for DB1${__time()}&quot;,&#xd;
+  &quot;name&quot;: &quot;Query_DB2${__time()}&quot;,&#xd;
+  &quot;description&quot;: &quot;New query for DB2${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
  }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -3164,8 +3164,8 @@ catch (Throwable ex)
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
   &#xd;
-  &quot;name&quot;: &quot;Query_UpdateDB1${__time()}&quot;,&#xd;
-  &quot;description&quot;: &quot;Update query forDB1${__time()} &quot;,&#xd;
+  &quot;name&quot;: &quot;Query_UpdateDB2${__time()}&quot;,&#xd;
+  &quot;description&quot;: &quot;Update query forDB2${__time()} &quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -3396,7 +3396,7 @@ catch (Throwable ex)
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query Details By QueryID1(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query Details By QueryID(DB2)" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
