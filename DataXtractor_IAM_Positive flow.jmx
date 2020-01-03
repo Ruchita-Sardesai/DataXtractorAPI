@@ -222,6 +222,11 @@
             <stringProp name="Argument.value">run</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="dataTypes" elementType="Argument">
+            <stringProp name="Argument.name">dataTypes</stringProp>
+            <stringProp name="Argument.value">/api/dataextractor/v1/datatypes</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -487,6 +492,9 @@
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot;  &#xd;
@@ -579,6 +587,10 @@
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
+          &quot;dbPort&quot;: 0,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot;     &#xd;
@@ -763,6 +775,10 @@
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
+          &quot;dbPort&quot;: 0,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot; &#xd;
@@ -984,6 +1000,82 @@
           <hashTree/>
         </hashTree>
       </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="DataTypes" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="GET all Datatypes present in Data Extractor Database" enabled="false">
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="script"></stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to get all Datatypes present in Data Extractor Database" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">UFT-8</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${dataTypes}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1146597565">${Response200}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json; charset=UTF-8</stringProp>
+              </elementProp>
+              <elementProp name="Cache-Control" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${__property(AccesToken_Tenant_1)}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Queries" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -1005,7 +1097,7 @@
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by ConnectionID(DB1)" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to RUN Query by Connection to the Data Extractor Database" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1015,6 +1107,12 @@
   &quot;name&quot;: &quot;Query_DB1${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;New query for DB1${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;@name&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
  }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -1389,6 +1487,12 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;Query_DB1${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;New query for DB1${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;@name&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
  }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -1485,7 +1589,14 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;Query_UpdateDB1${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;Update query forDB1${__time()} &quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
-}</stringProp>
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;@name&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
+}&#xd;
+</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -2119,6 +2230,9 @@ catch (Throwable ex)
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot;  &#xd;
@@ -2204,13 +2318,17 @@ catch (Throwable ex)
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-          &quot;name&quot;:&quot;DB2_Connection${__time()}&quot;,&#xd;
-          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB2${__time()}&quot;,&#xd;
+          &quot;name&quot;:&quot;DB1_Connection${__time()}&quot;,&#xd;
+          &quot;description&quot;: &quot;ADD_ODBC connection detail for DB1${__time()}&quot;,&#xd;
           &quot;host&quot;: &quot;${host}&quot;,&#xd;
           &quot;port&quot;:&quot;${port}&quot;,&#xd;
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
+          &quot;dbPort&quot;: 0&quot;,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot;     &#xd;
@@ -2388,13 +2506,17 @@ catch (Throwable ex)
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	     &quot;name&quot;:&quot;Tup_DB2_Connection${__time()}&quot;,&#xd;
-          &quot;description&quot;: &quot;Update_ODBC connection detail for DB2${__time()}&quot;,&#xd;
+	     &quot;name&quot;:&quot;Tup_DB1_Connection${__time()}&quot;,&#xd;
+          &quot;description&quot;: &quot;Update_ODBC connection detail for DB1${__time()}&quot;,&#xd;
           &quot;host&quot;: &quot;${host}&quot;,&#xd;
           &quot;port&quot;:&quot;${port}&quot;,&#xd;
           &quot;dataSourceName&quot;:&quot;${dataSourceName}&quot;,&#xd;
           &quot;databaseName&quot;:&quot;${databaseName}&quot;,&#xd;
           &quot;serverName&quot;:&quot;${serverName}&quot;,&#xd;
+          &quot;maxPoolSize&quot;: 0,&#xd;
+          &quot;minPoolSize&quot;: 0,&#xd;
+          &quot;maxIdleTime&quot;: 0,&#xd;
+          &quot;dbPort&quot;: 0&quot;,&#xd;
           &quot;user&quot;: &quot;${user}&quot;,&#xd;
           &quot;password&quot;:&quot;${password}&quot;,&#xd;
           &quot;odbcDriver&quot;: &quot;${odbcDriver}&quot; &#xd;
@@ -2616,6 +2738,82 @@ catch (Throwable ex)
           <hashTree/>
         </hashTree>
       </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="DataTypes" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="GET all Datatypes present in Data Extractor Database" enabled="false">
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="script"></stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="P: Verify user is able to get all Datatypes present in Data Extractor Database" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+          <stringProp name="HTTPSampler.port">UFT-8</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${dataTypes}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1146597565">${Response200}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json; charset=UTF-8</stringProp>
+              </elementProp>
+              <elementProp name="Cache-Control" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${__property(AccesToken_Tenant_1)}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Queries" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -2647,7 +2845,14 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;Query_DB2${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;New query for DB2${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
- }</stringProp>
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;string&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
+}&#xd;
+</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -3021,7 +3226,13 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;Query_DB2${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;New query for DB2${__time()}&quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
- }</stringProp>
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;string&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -3117,6 +3328,12 @@ catch (Throwable ex)
   &quot;name&quot;: &quot;Query_UpdateDB2${__time()}&quot;,&#xd;
   &quot;description&quot;: &quot;Update query forDB2${__time()} &quot;,&#xd;
   &quot;queryString&quot;: &quot;select * from PaymentTransactions&quot;,&#xd;
+  &quot;variables&quot;: [&#xd;
+    {&#xd;
+      &quot;name&quot;: &quot;string&quot;,&#xd;
+      &quot;dataType&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  ]&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
